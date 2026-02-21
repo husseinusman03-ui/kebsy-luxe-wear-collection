@@ -3,90 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kebsy Luxe Wear Collection</title>
-    <script>
-        // Add local storage functionality and manage cart
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-        function addToCart(product) {
-            cart.push(product);
-            localStorage.setItem('cart', JSON.stringify(cart));
-        }
-
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            localStorage.setItem('cart', JSON.stringify(cart));
-        }
-
-        function loadCart() {
-            // Load cart items from local storage 
-            const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-            cartItems.forEach(item => displayCartItem(item));
-        }
-    </script>
+    <title>Home Page</title>
 </head>
-<body onload="loadCart()">
-    <h1>Kebsy Luxe Wear Collection</h1>
-    <div>
-        <h2>Admin Panel</h2>
-        <form id="productForm">
-            <label for="productName">Product Name:</label>
-            <input type="text" id="productName" required>
-            <br>
-            <label for="price">Price:</label>
-            <input type="number" id="price" required>
-            <br>
-            <label for="stock">Stock:</label>
-            <input type="number" id="stock" required>
-            <br>
-            <label for="category">Category:</label>
-            <select id="category" required>
-                <option value="Clothes">Clothes</option>
-                <option value="Accessories">Accessories</option>
-                <option value="Footwear">Footwear</option>
-            </select>
-            <br>
-            <label for="imageUpload">Image:</label>
-            <input type="file" id="imageUpload" accept="image/*" required>
-            <br>
-            <button type="submit">Add Product</button>
-        </form>
-    </div>
-    <div id="productGrid">
-        <h2>Products</h2>
-        <!-- dynamically generated product items will be displayed here -->
-    </div>
-    <script>
-        document.getElementById('productForm').onsubmit = function(e) {
-            e.preventDefault();
-            const productName = document.getElementById('productName').value;
-            const price = document.getElementById('price').value;
-            const stock = document.getElementById('stock').value;
-            const category = document.getElementById('category').value;
-            const fileInput = document.getElementById('imageUpload');
-            const file = fileInput.files[0];
-
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                const product = {
-                    name: productName,
-                    price: price,
-                    stock: stock,
-                    category: category,
-                    image: event.target.result
-                };
-                addToCart(product);
-                displayCartItem(product);
-            };
-            reader.readAsDataURL(file);
-        };
-
-        function displayCartItem(product) {
-            const productGrid = document.getElementById('productGrid');
-            const productDiv = document.createElement('div');
-            productDiv.innerHTML = `<h3>${product.name}</h3><p>Price: ${product.price}</p><p>Stock: ${product.stock}</p><p>Category: ${product.category}</p><img src='${product.image}' alt='${product.name}' style='width:100px;height:auto;'>`;
-            productGrid.appendChild(productDiv);
-        }
-    </script>
+<body>
+    <nav>
+        <ul>
+            <li><a href="admin.html">Admin</a></li>
+            <li><a href="store.html">Store</a></li>
+        </ul>
+    </nav>
+    <h1>Welcome to Kebsy Luxe Wear Collection</h1>
+    <p>Your one-stop shop for luxe apparel.</p>
 </body>
 </html>
